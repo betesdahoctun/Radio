@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mi Radio</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #1a1a1a; font-family: sans-serif; }
+        #playButton {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: radial-gradient(circle, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        span { font-size: 20px; margin-top: 20px; opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+<button id="playButton" onclick="togglePlay()">
+    <div id="statusText">TOCAR PARA ESCUCHAR</div>
+    <span>La Radio en Vivo</span>
+</button>
+
+<audio id="radioPlayer" src="https://ec3.yesstreaming.net:1415/stream"></audio>
+
+<script>
+    const player = document.getElementById('radioPlayer');
+    const statusText = document.getElementById('statusText');
+    const btn = document.getElementById('playButton');
+
+    function togglePlay() {
+        if (player.paused) {
+            player.play();
+            statusText.innerText = "ESCUCHANDO...";
+            btn.style.background = "radial-gradient(circle, #f44336 0%, #c62828 100%)"; // Cambia a rojo al sonar
+        } else {
+            player.pause();
+            statusText.innerText = "TOCAR PARA ESCUCHAR";
+            btn.style.background = "radial-gradient(circle, #4CAF50 0%, #2E7D32 100%)"; // Vuelve a verde
+        }
+    }
+</script>
+
+</body>
+</html>
